@@ -1,6 +1,5 @@
 import ageOfEmpires from "./age-of-empires-units.json";
 
-  
 export const fetchUnitList = async (filters) => {
   try {
     let response = ageOfEmpires.units;
@@ -21,6 +20,16 @@ export const fetchUnitList = async (filters) => {
           }
         });
     });
+    return response;
+  } catch (e) {
+    console.log(e);
+    return e;
+  }
+};
+
+export const fetchUnit = async (id) => {
+  try {
+    let response = ageOfEmpires.units.find((unit) => unit.id === id);
     return response;
   } catch (e) {
     console.log(e);
