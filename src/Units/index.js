@@ -24,10 +24,13 @@ export default function Units() {
     },
   });
   const dispatch = useDispatch();
-  const { units, error, loading } = useSelector((state) => state.unitListReducer);
+  const { units, error, loading } = useSelector(
+    (state) => state.unitListReducer
+  );
 
   useEffect(() => {
     dispatch(requestUnitListData(filters));
+    // eslint-disable-next-line
   }, [filters]);
 
   const handleFilters = ({ type, isActive, value }) => {

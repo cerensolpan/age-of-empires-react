@@ -11,6 +11,7 @@ export default function Unit() {
 
   useEffect(() => {
     dispatch(requestUnitData(Number(id)));
+    // eslint-disable-next-line
   }, [id]);
 
   return (
