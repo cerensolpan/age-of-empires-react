@@ -5,8 +5,8 @@ export default function Table({ units }) {
   return (
     <div className="mt-8 flex flex-col">
       <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
-        <div className="inline-block md:min-w-full py-2 align-middle md:px-6 lg:px-8">
-          <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 rounded-lg">
+        <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+          <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
             {!units ||  units.length < 1 ? (
               <div className="min-w-full flex justify-center items-center min-h-[200px]">
                 <svg
@@ -15,7 +15,7 @@ export default function Table({ units }) {
                   viewBox="0 0 24 24"
                   stroke-width="1.5"
                   stroke="currentColor"
-                  class="w-6 h-6"
+                  className="w-6 h-6"
                 >
                   <path
                     stroke-linecap="round"
@@ -31,19 +31,19 @@ export default function Table({ units }) {
                   <tr>
                     <th
                       scope="col"
-                      className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
+                      className="py-3.5 pl-4 pr-3 text-left titleText sm:pl-6"
                     >
                       Id
                     </th>
                     <th
                       scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                      className="px-3 py-3.5 text-left titleText"
                     >
                       Name
                     </th>
                     <th
                       scope="col"
-                      className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                      className="px-3 py-3.5 text-left titleText"
                     >
                       Age
                     </th>
@@ -71,7 +71,7 @@ export default function Table({ units }) {
                         {unit.age}
                       </td>
 
-                      <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6 space-x-4">
+                      <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm sm:pr-6 space-x-4">
                         {unit.cost &&
                           Object.keys(unit.cost).map(function (key) {
                             return (
