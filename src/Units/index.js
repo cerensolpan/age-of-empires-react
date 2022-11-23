@@ -47,7 +47,7 @@ export default function Units() {
   return (
     <div className="space-y-12">
       <h1 className="text-2xl text-blue-500">Units Page</h1>
-      <div className="grid grid-cols-2">
+      <div className="grid md:grid-cols-2 md:space-y-0 space-y-4">
         <div className="flex flex-col">
           <span>Ages</span>
           <div>
@@ -103,7 +103,7 @@ export default function Units() {
             </span>
           </div>
         </div>
-        <div className="flex flex-col justify-center max-w-[500px]">
+        <div className="flex flex-col justify-center md:items-center items-center md:max-w-[500px]">
           <span>Costs</span>
           <div className="grid grid-cols-2 justify-start items-center mt-4 px-20">
             <div className="space-x-2 flex justify-start items-center">
