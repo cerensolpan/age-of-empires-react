@@ -5,8 +5,8 @@ export default function Table({ units }) {
   return (
     <div className="mt-8 flex flex-col">
       <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
-        <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-          <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+        <div className="inline-block md:min-w-full py-2 align-middle md:px-6 lg:px-8">
+          <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 rounded-lg">
             {!units ||  units.length < 1 ? (
               <div className="min-w-full flex justify-center items-center min-h-[200px]">
                 <svg
@@ -63,7 +63,7 @@ export default function Table({ units }) {
                         {unit.id}
                       </td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                        <Link to={`/detail/${unit.id}`}>
+                        <Link to={`/units/${unit.id}`}>
                         {unit.name}
                         </Link>
                       </td>
