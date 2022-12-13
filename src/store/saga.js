@@ -1,40 +1,35 @@
-import { call, put, takeLatest } from "redux-saga/effects";
+import { call, put, takeLatest, takeEvery } from "redux-saga/effects";
+import ageOfEmpires from "../age-of-empires-units.json"
+import {fetchUnitListSuccess} from "../Units/unitListSlice"
 
-import {
-  REQUEST_UNITLIST_DATA,
-  REQUEST_UNIT_DATA,
-  requestedUnitList,
-  requestedUnitListSuccess,
-  requestedUnitListError,
-  requestedUnitSuccess,
-  requestedUnitError,
-  requestedUnit,
-} from "../actions/actionTypes";
-import { fetchUnitList, fetchUnit } from "../api";
 
-function* fetchUnits(params) {
+function* fetchUnits(filters) {
   try {
-    yield put(requestedUnitList());
-    const response = yield call(fetchUnitList, params.filters);
-    yield put(requestedUnitListSuccess(response));
-  } catch (e) {
-    console.log(e);
-    yield put(requestedUnitListError(e));
-  }
-}
+    let response = ageOfEmpires.units;
+    Object.keys(filters).forEach((key) => {
+      // Age filter
+      if (filters[key].value !== "All" && key === "age") {
+        response = response.filter((unit) => {
+          return unit.age === filters.age.value;
+        });
+      }
 
-function* fetchUnitDetail(params) {
-  try {
-    yield put(requestedUnit());
-    const response = yield call(fetchUnit, params.id);
-    yield put(requestedUnitSuccess(response));
+      //Cost Filter
+      if (filters[key].isActive && key !== "age")
+        // eslint-disable-next-line
+        response = response.filter((unit) => {
+          if (unit.cost && unit.cost[key]) {
+            return unit.cost[key] <= filters[key].value;
+          }
+        });
+      });
+    yield put(fetchUnitListSuccess(response))
   } catch (e) {
-    console.log(e);
-    yield put(requestedUnitError(e));
+
   }
 }
 
 export default function* watcherSaga() {
-  yield takeLatest(REQUEST_UNITLIST_DATA, fetchUnits);
-  yield takeLatest(REQUEST_UNIT_DATA, fetchUnitDetail);
+  //unitListSlice => name: units, reducer name 
+  yield takeEvery('units/fetchUnitList', fetchUnits);
 }
