@@ -3,15 +3,22 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import "./styles/global.scss";
 import App from "./App";
-import { legacy_createStore as createStore, applyMiddleware } from "redux";
-import createSagaMiddleware from "redux-saga";
-import combineReducers from "./store";
 import watcherSaga from "./store/saga";
-import { Provider } from "react-redux";
+import { unitListReducer } from "./Units/unitListSlice";
 
-const sagaMiddleware = createSagaMiddleware();
-const store = createStore(combineReducers, applyMiddleware(sagaMiddleware));
-sagaMiddleware.run(watcherSaga);
+import createSagaMiddleware from "redux-saga";
+import { Provider } from "react-redux";
+import { configureStore } from "@reduxjs/toolkit";
+
+let saga = createSagaMiddleware();
+
+const store = configureStore({
+  reducer: {
+    units: unitListReducer
+  },
+  middleware:[saga]
+});
+saga.run(watcherSaga);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -21,3 +28,4 @@ root.render(
     </Provider>
   </React.StrictMode>
 );
+
