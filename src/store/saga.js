@@ -1,6 +1,7 @@
 import { call, put, takeLatest, takeEvery } from "redux-saga/effects";
 import ageOfEmpires from "../age-of-empires-units.json"
 import {fetchUnitListSuccess} from "../Units/unitListSlice"
+import {fetchUnitDetailSuccess} from "../Unit/unitDetailSlice"
 
 
 function* fetchUnits(filters) {
@@ -29,7 +30,19 @@ function* fetchUnits(filters) {
   }
 }
 
+function* fetchUnitDetail(params) {
+  let response;
+  try {
+    response = ageOfEmpires.units.find((unit) => unit.id === id);
+  } catch (e) {
+    console.log(e);
+    return e;
+  }
+  yield put(fetchUnitDetailSuccess(response))
+}
+
 export default function* watcherSaga() {
   //unitListSlice => name: units, reducer name 
   yield takeEvery('units/fetchUnitList', fetchUnits);
+  yield takeEvery('unit/fetchUnitDetail', fetchUnitDetail);
 }
