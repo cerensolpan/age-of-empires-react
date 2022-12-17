@@ -1,9 +1,10 @@
 import { combineReducers }from "redux";
 
-import unitReducer from "../Unit/unitReducer";
-import unitListReducer from "../Units/unitListReducer";
+import { unitListReducer } from "../Units/unitListSlice"
+import { unitDetailReducer } from "../Unit/unitDetailSlice";
+
 
 export default combineReducers({
-    unitReducer,
-    unitListReducer
+    unitListReducer,
+    unitDetailReducer
 });
