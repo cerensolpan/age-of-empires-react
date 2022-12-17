@@ -30,7 +30,7 @@ function* fetchUnits(filters) {
   }
 }
 
-function* fetchUnitDetail(params) {
+function* fetchUnitDetail(id) {
   let response;
   try {
     response = ageOfEmpires.units.find((unit) => unit.id === id);
