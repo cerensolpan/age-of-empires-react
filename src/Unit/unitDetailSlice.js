@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  unit: [],
+  unit: {},
   status: "idle",
   error: null,
   isLoading:false
@@ -15,7 +15,7 @@ const unitDetailSlice = createSlice({
       state.isLoading = true;
     },
     fetchUnitDetailSuccess : (state,action) =>{
-      state.units =action.payload;
+      state.unit =action.payload;
       state.isLoading=false;
     },
     fetchUnitDetailFailure : (state)=>{
@@ -25,6 +25,6 @@ const unitDetailSlice = createSlice({
 });
     
 export const {fetchUnitDetail,fetchUnitDetailSuccess,fetchUnitDetailFailure} =unitDetailSlice.actions
-export const unitSelector = (state) =>state.unit
+export const unitDetailSelector = (state) =>state.unit
 
-export const unitReducer = unitDetailSlice.reducer;
+export const unitDetailReducer = unitDetailSlice.reducer;
