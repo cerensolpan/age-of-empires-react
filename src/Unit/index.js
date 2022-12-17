@@ -1,27 +1,29 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { requestUnitData } from "../actions/actionTypes";
 import { useEffect } from "react";
 import LoadingCircle from "../components/LoadingCircle";
+import { fetchUnitDetail } from "./unitDetailSlice";
+import { unitDetailSelector } from "./unitDetailSlice";
 
 export default function Unit() {
-  const { unit, error, loading } = useSelector((state) => state.unitReducer);
+  const {unit}= useSelector(unitDetailSelector);
   let { id } = useParams();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(requestUnitData(Number(id)));
+    dispatch(fetchUnitDetail(Number(id)));
     // eslint-disable-next-line
   }, [id]);
+
 
   return (
     <div className="space-y-12 px-12">
       <h1 className="text-2xl text-blue-500">Unit Detail Page</h1>
-      {loading ? (
+      {/* {loading ? (
         <LoadingCircle />
       ) : error ? (
         <span className="text-red-500">Error</span>
-      ) : (
+      ) : ( */}
         <div className="flex justify-center overflow-hidden">
           <table className="divide divide-gray-300 shadow rounded-lg px-4">
             <tbody>
@@ -167,7 +169,7 @@ export default function Unit() {
             </tbody>
           </table>
         </div>
-      )}
+      {/* )} */}
     </div>
   );
 }

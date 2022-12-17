@@ -3,8 +3,12 @@ import Table from "../components/Table";
 import { useDispatch, useSelector } from "react-redux";
 import { requestUnitListData } from "../actions/actionTypes";
 import LoadingCircle from "../components/LoadingCircle";
+import { fetchUnitList } from "./unitListSlice";
+import { unitListSelector } from "./unitListSlice";
 
 export default function Units() {
+  const { units } = useSelector(unitListSelector);
+  const dispatch = useDispatch();
   const [filters, setFilters] = useState({
     age: {
       isActive: true,
@@ -23,15 +27,11 @@ export default function Units() {
       value: 0,
     },
   });
-  const dispatch = useDispatch();
-  const { units, error, loading } = useSelector(
-    (state) => state.unitListReducer
-  );
 
   useEffect(() => {
-    dispatch(requestUnitListData(filters));
-    // eslint-disable-next-line
+    dispatch(fetchUnitList(filters));
   }, [filters]);
+
 
   const handleFilters = ({ type, isActive, value }) => {
     let updatedValue = { ...filters };
@@ -195,13 +195,13 @@ export default function Units() {
         </div>
       </div>
       <div className="w-full">
-        {loading ? (
+        {/* {loading ? (
           <LoadingCircle />
         ) : error ? (
           <span className="text-red-500">Error</span>
-        ) : (
+        ) : ( */}
           <Table units={units} />
-        )}
+        {/* )} */}
       </div>
     </div>
   );
