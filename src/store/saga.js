@@ -7,20 +7,20 @@ import {fetchUnitDetailSuccess} from "../Unit/unitDetailSlice"
 function* fetchUnits(filters) {
   try {
     let response = ageOfEmpires.units;
-    Object.keys(filters).forEach((key) => {
+    Object.keys(filters.payload).forEach((key) => {
       // Age filter
-      if (filters[key].value !== "All" && key === "age") {
+      if (filters.payload[key].value !== "All" && key === "age") {
         response = response.filter((unit) => {
-          return unit.age === filters.age.value;
+          return unit.age === filters.payload.age.value;
         });
       }
 
       //Cost Filter
-      if (filters[key].isActive && key !== "age")
+      if (filters.payload[key].isActive && key !== "age")
         // eslint-disable-next-line
         response = response.filter((unit) => {
           if (unit.cost && unit.cost[key]) {
-            return unit.cost[key] <= filters[key].value;
+            return unit.cost[key] <= filters.payload[key].value;
           }
         });
       });
@@ -31,14 +31,14 @@ function* fetchUnits(filters) {
 }
 
 function* fetchUnitDetail(id) {
-  let response;
   try {
-    response = ageOfEmpires.units.find((unit) => unit.id === id);
+    let response;
+    response = ageOfEmpires.units.find((unit) => unit.id === id.payload);
+    yield put(fetchUnitDetailSuccess(response))
   } catch (e) {
     console.log(e);
     return e;
   }
-  yield put(fetchUnitDetailSuccess(response))
 }
 
 export default function* watcherSaga() {
