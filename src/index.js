@@ -9,12 +9,14 @@ import { unitListReducer } from "./Units/unitListSlice";
 import createSagaMiddleware from "redux-saga";
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
+import { unitDetailReducer } from "./Unit/unitDetailSlice";
 
 let saga = createSagaMiddleware();
 
 const store = configureStore({
   reducer: {
-    units: unitListReducer
+    units: unitListReducer,
+    unit: unitDetailReducer
   },
   middleware:[saga]
 });
