@@ -75,7 +75,7 @@ export default function Table({ units }) {
                         {unit.cost &&
                           Object.keys(unit.cost).map(function (key) {
                             return (
-                              <span>
+                              <span key={`td-${key}`}>
                                 {key}: {unit.cost[key]}
                               </span>
                             );
