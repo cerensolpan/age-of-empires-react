@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import Table from "../components/Table";
 import { useDispatch, useSelector } from "react-redux";
-import { requestUnitListData } from "../actions/actionTypes";
 import LoadingCircle from "../components/LoadingCircle";
 import { fetchUnitList } from "./unitListSlice";
 import { unitListSelector } from "./unitListSlice";
