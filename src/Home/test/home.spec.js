@@ -1,4 +1,4 @@
-import { render, screen, cleanup } from "@testing-library/react";
+import { render, screen, cleanup } from "../../common/helpers/renderWrapper";
 import Home from "../index";
 
 afterEach(cleanup);
