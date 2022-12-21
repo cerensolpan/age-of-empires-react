@@ -5,7 +5,7 @@ import LoadingCircle from "../components/LoadingCircle";
 import { fetchUnitList } from "./unitListSlice";
 import { unitListSelector } from "./unitListSlice";
 
-export default function Units() {
+export default function Units({setModuleCallback}) {
   const { units } = useSelector(unitListSelector);
   const dispatch = useDispatch();
   const [filters, setFilters] = useState({
@@ -33,6 +33,9 @@ export default function Units() {
 
 
   const handleFilters = ({ type, isActive, value }) => {
+    if (setModuleCallback) {
+      return setModuleCallback();
+    }
     let updatedValue = { ...filters };
     if (isActive !== undefined) {
       updatedValue[type].isActive = isActive;
