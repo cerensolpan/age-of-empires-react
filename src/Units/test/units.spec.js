@@ -8,6 +8,7 @@ describe("Units", () => {
     render(<Units />);
     expect(screen.getByRole("heading")).toHaveTextContent("Units Page");
   });
+  
   it("should trigger the function when clicking the age buttons", async() => {
     const mockCallback = jest.fn()
     render(<Units setModuleCallback={mockCallback}/>)
@@ -19,4 +20,18 @@ describe("Units", () => {
 
     expect(mockCallback).toHaveBeenCalled()
   });
+
+  it("should trigger the function when change range costs", async() => {
+
+    const mockCallback = jest.fn()
+    render(<Units setModuleCallback={mockCallback}/>)
+
+    // eslint-disable-next-line testing-library/no-unnecessary-act
+    await act (async()=>{
+      fireEvent.change(screen.getByTestId('wood'), { target: { value: 170 } });
+    })
+
+    expect(mockCallback).toHaveBeenCalled()
+  });
+ 
 });

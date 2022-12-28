@@ -126,6 +126,7 @@ export default function Units({setModuleCallback}) {
             <div className="space-x-2 flex justify-start items-center">
               <input
                 className="rounded-lg overflow-hidden appearance-none bg-gray-400 h-3 w-128"
+                data-testid="wood"
                 type="range"
                 min="0"
                 max="200"
