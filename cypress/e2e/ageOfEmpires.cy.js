@@ -21,4 +21,14 @@ describe('empty spec', () => {
 
   })
 
+  it('click costs buttons and filter data',()=>{
+    cy.contains('Units').click()
+
+    // Check food button
+    cy.contains('Food')
+    .parent()
+    .find('input[type=checkbox]')
+    .check()
+  })
+
 })
