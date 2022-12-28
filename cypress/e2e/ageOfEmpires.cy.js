@@ -11,4 +11,14 @@ describe('empty spec', () => {
     cy.contains('Units').click()
   })
 
+  it('click ages buttons and filter data',()=>{
+    cy.contains('Units').click()
+
+    // Filter dark button 
+    cy.contains('Dark').click()
+    cy.get('td').contains('Feudal').should('not.exist')
+    cy.get('td').contains('Dark').should('exist')
+
+  })
+
 })
