@@ -31,4 +31,13 @@ describe('empty spec', () => {
     .check()
   })
 
+  it('trigger input range',()=>{
+    cy.contains('Units').click()
+
+    // Check food button
+    cy.get('input[type=range]')
+    .invoke('val', 50)
+    .trigger('change')
+  })
+
 })
