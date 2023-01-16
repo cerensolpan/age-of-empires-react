@@ -2,8 +2,8 @@ const express = require("express");
 
 const { unitsController } = require("../controllers/index");
 
-const unitRouter = express.Router();
+const unitsRouter = express.Router();
 
-unitRouter.get("/", unitsController.getAllUnits);
+unitsRouter.get("/", unitsController.getAllUnits);
 
-module.exports = unitRouter;
+module.exports = unitsRouter;
