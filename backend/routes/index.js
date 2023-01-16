@@ -1,12 +1,17 @@
 const express = require("express");
 
-const unitRouter = require("./units.route");
+const unitsRouter = require("./units.route");
+const unitRouter = require("./unit.route");
 
 const router = express.Router();
 
 const defaultRoutes = [
   {
     path: "/units",
+    route: unitsRouter,
+  },
+  {
+    path: "/unit",
     route: unitRouter,
   },
 ];
