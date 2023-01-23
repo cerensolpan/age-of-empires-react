@@ -3,7 +3,7 @@ const router = require("./routes/index");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const fs = require("fs");
-const Units = require("./models/Units");
+const Units = require("./models/units.model");
 
 dotenv.config({ path: "../.env" });
 
@@ -21,18 +21,18 @@ const data = JSON.parse(
 );
 
 // import data to MongoDB
-const importData = async () => {
-  try {
-    await Units.create(data.units);
-    console.log("data successfully imported");
-    // to exit the process
-    process.exit();
-  } catch (error) {
-    console.log("error", error);
-  }
-};
+// const importData = async () => {
+//   try {
+//     await Units.create(data.units);
+//     console.log("data successfully imported");
+//     // to exit the process
+//     process.exit();
+//   } catch (error) {
+//     console.log("error", error);
+//   }
+// };
 
-importData();
+// importData();
 
 app.use(router);
 
