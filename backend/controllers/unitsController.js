@@ -1,9 +1,17 @@
-const units = require("../../src/age-of-empires-units.json");
+// const units = require("../../src/age-of-empires-units.json");
+const { unitsService } = require("../services");
 
-const getAllUnits = (req, res) => {
-  res.json(units);
+const getAllUnits = async (req, res) => {
+  try {
+    const units = await unitsService.getAllUnits();
+    return res.send(units);
+  } catch (err) {
+    res.send({
+      error: "Units get operation is failed" + err,
+    });
+  }
 };
 
 module.exports = {
-  getAllUnits,
+  getAllUnits
 };
