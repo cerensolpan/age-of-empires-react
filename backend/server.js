@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const fs = require("fs");
 const Units = require("./models/units.model");
+var bodyParser = require('body-parser')
 
 dotenv.config({ path: "../.env" });
 
@@ -12,13 +13,15 @@ const mongoURI = process.env.MONGODB_URL;
 const app = express();
 const PORT = process.env.PORT || 3500;
 
+app.use(bodyParser())
+
 mongoose
   .connect(mongoURI)
   .then(() => console.log("db connected"))
   .catch((e) => console.log("e", e));
-const data = JSON.parse(
-  fs.readFileSync("./age-of-empires-units.json", "utf-8")
-);
+// const data = JSON.parse(
+//   fs.readFileSync("./age-of-empires-units.json", "utf-8")
+// );
 
 // import data to MongoDB
 // const importData = async () => {
