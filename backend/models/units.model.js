@@ -18,7 +18,15 @@ const UnitsSchema = new Schema({
     type: String
   },
   cost: {
-    type: Object
+    Wood:{
+      type: Number
+    },
+    Food:{
+      type: Number
+    },
+    Gold:{
+      type: Number
+    }
   },
   reload_time: {
     type: Number
