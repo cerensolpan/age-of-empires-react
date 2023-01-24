@@ -5,4 +5,9 @@ const getAllUnits = async () => {
   return units;
 };
 
-module.exports = { getAllUnits };
+const getFilteredUnits = async (query) => {
+  const units = await Units.find(query);
+  return units;
+};
+
+module.exports = { getAllUnits, getFilteredUnits };
