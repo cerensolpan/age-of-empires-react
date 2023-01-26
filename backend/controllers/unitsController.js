@@ -4,7 +4,6 @@ const { unitsService } = require("../services");
 const getAllUnits = async (req, res) => {
   try {
     const units = await unitsService.getAllUnits();
-    console.log("units", units);
     return res.send(units);
   } catch (err) {
     res.send({
@@ -32,11 +31,29 @@ const getFilteredUnits = async (req, res) => {
       "cost.Gold": { $gte: costFilter.Gold },
     });
 
-  const units = await unitsService.getFilteredUnits(query);
-  res.send(units);
+  try {
+    const units = await unitsService.getFilteredUnits(query);
+    res.send(units);
+  } catch (err) {
+    res.send({
+      error: "Units filtered post operation is failed" + err,
+    });
+  }
+};
+
+const getUnit = async (req, res) => {
+  try {
+    const unit = await unitsService.getUnit({id:req.params.id});
+    return res.send(unit);
+  } catch (err) {
+    res.send({
+      error: "Unit get operation is failed" + err,
+    });
+  }
 };
 
 module.exports = {
   getAllUnits,
   getFilteredUnits,
+  getUnit
 };
